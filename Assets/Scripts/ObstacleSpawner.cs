@@ -2,32 +2,74 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject obstacle;
-    public GameObject itemPrefab;
+    [Header("Top Obstacles")]
+    public GameObject topSmall;
+    public GameObject topMedium;
+    public GameObject topLarge;
 
+    [Header("Bottom Obstacles")]
+    public GameObject bottomSmall;
+    public GameObject bottomMedium;
+    public GameObject bottomLarge;
+
+    [Header("Item Spawner")]
+    public ItemSpawner itemSpawner;
+
+    [Header("Spawn Settings")]
     public float spawnTime = 2f;
-    public float minY = -3f;
-    public float maxY = 3f;
+    public float spawnX = 10f;
+
+    public float minY = -5f;
+    public float maxY = 5f;
 
     void Start()
     {
-        InvokeRepeating("SpawnObstacle", 1f, spawnTime);
+        InvokeRepeating(nameof(SpawnObstacle), 1f, spawnTime);
     }
 
     void SpawnObstacle()
     {
-        float y = Random.Range(minY, maxY);
+        int type = Random.Range(0, 3);
 
-        Vector3 spawnPos = new Vector3(10f, y, 0f);
+        GameObject topPrefab = null;
+        GameObject bottomPrefab = null;
 
-        GameObject newObstacle = Instantiate(obstacle, spawnPos, Quaternion.identity);
-
-        // chance de criar item perto do obstáculo
-        if (Random.value > 0.5f)
+        switch (type)
         {
-            Vector3 itemPos = spawnPos + new Vector3(-1.5f, 0.5f, 0f);
+            case 0:
+                topPrefab = topSmall;
+                bottomPrefab = bottomLarge;
+                break;
 
-            Instantiate(itemPrefab, itemPos, Quaternion.identity);
+            case 1:
+                topPrefab = topMedium;
+                bottomPrefab = bottomMedium;
+                break;
+
+            case 2:
+                topPrefab = topLarge;
+                bottomPrefab = bottomSmall;
+                break;
+        }
+
+        float topHeight = topPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+        float bottomHeight = bottomPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+
+        float topY = maxY - (topHeight / 2f);
+        float bottomY = minY + (bottomHeight / 2f);
+
+        Instantiate(topPrefab, new Vector3(spawnX, topY, 0f), Quaternion.identity);
+        Instantiate(bottomPrefab, new Vector3(spawnX, bottomY, 0f), Quaternion.identity);
+
+        // calcula centro do gap
+        float bottomInnerEdge = bottomY + (bottomHeight / 2f);
+        float topInnerEdge = topY - (topHeight / 2f);
+        float gapCenter = (bottomInnerEdge + topInnerEdge) / 2f;
+
+        // chama o ItemSpawner
+        if (itemSpawner != null)
+        {
+            itemSpawner.TrySpawnItem(spawnX, gapCenter);
         }
     }
 }

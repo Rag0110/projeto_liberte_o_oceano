@@ -3,24 +3,16 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     public GameObject itemPrefab;
+    [Range(0f, 1f)]
+    public float spawnChance = 0.5f;
 
-    public float spawnX = 10f;
-    public float minY = -2f;
-    public float maxY = 2f;
-
-    public float spawnInterval = 4f;
-
-    void Start()
+    public void TrySpawnItem(float x, float y)
     {
-        InvokeRepeating("SpawnItem", 2f, spawnInterval);
-    }
+        if (itemPrefab == null) return;
 
-    void SpawnItem()
-    {
-        float randomY = Random.Range(minY, maxY);
-
-        Vector3 spawnPos = new Vector3(spawnX, randomY, 0);
-
-        Instantiate(itemPrefab, spawnPos, Quaternion.identity);
+        if (Random.value < spawnChance)
+        {
+            Instantiate(itemPrefab, new Vector3(x, y, 0f), Quaternion.identity);
+        }
     }
 }

@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CollectItem : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D col)
+    public int points = 10;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (col.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            ScoreManager.instance.AddScore(50);
+            ScoreManager.instance.AddScore(points);
             Destroy(gameObject);
         }
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6667161296591085535}
   - component: {fileID: 5758127464632177652}
   - component: {fileID: 4369427380415727329}
+  - component: {fileID: 4934378361054784436}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -141,3 +142,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b013a28bebdc584a8e8ae6635a9e2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectItem
+  points: 10
+--- !u!114 &4934378361054784436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620029641186337214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987e679cd0c147e42abe780116b6394a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleMover
+  speed: 3
