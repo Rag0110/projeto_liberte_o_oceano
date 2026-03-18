@@ -1,16 +1,31 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class Parallax : MonoBehaviour
+public class ParallaxLoop : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 4f;
+
+    private float length;
+    private Vector3 startPos;
+    private Tilemap tilemap;
+
+    void Start()
+    {
+        startPos = transform.position;
+
+        tilemap = GetComponentInChildren<Tilemap>();
+        tilemap.CompressBounds();
+
+        length = tilemap.localBounds.size.x;
+    }
 
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-        if (transform.position.x < -46f)
+        if (transform.position.x <= startPos.x - length)
         {
-            transform.position += new Vector3(92f, 0, 0);
+            transform.position += new Vector3(length * 2, 0, 0);
         }
     }
 }

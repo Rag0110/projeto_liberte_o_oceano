@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
@@ -16,19 +16,61 @@ public class ObstacleSpawner : MonoBehaviour
     public ItemSpawner itemSpawner;
 
     [Header("Spawn Settings")]
-    public float spawnTime = 2f;
-    public float spawnX = 10f;
+    public float minY = -10.5f;
+    public float maxY = 3f;
 
-    public float minY = -5f;
-    public float maxY = 5f;
+    [Header("Spawn Offset")]
+    public float extraSpawnOffset = 2f; // distância fora da tela
+
+    [Header("Group Settings")]
+    public int minGroup = 1;
+    public int maxGroup = 3;
+
+    public float smallGap = 1.2f;
+    public float bigGap = 3.5f;
+
+    private int obstaclesToSpawn;
+    private int spawnedInGroup = 0;
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnObstacle), 1f, spawnTime);
+        Invoke(nameof(SpawnRoutine), 1f);
+    }
+
+    void SpawnRoutine()
+    {
+        if (spawnedInGroup == 0)
+        {
+            int roll = Random.Range(0, 100);
+
+            if (roll < 50) obstaclesToSpawn = 1;
+            else if (roll < 80) obstaclesToSpawn = 2;
+            else obstaclesToSpawn = 3;
+        }
+
+        SpawnObstacle();
+
+        spawnedInGroup++;
+
+        if (spawnedInGroup >= obstaclesToSpawn)
+        {
+            spawnedInGroup = 0;
+            Invoke(nameof(SpawnRoutine), bigGap);
+        }
+        else
+        {
+            Invoke(nameof(SpawnRoutine), smallGap);
+        }
     }
 
     void SpawnObstacle()
     {
+        // 🔥 calcula a borda direita da câmera
+        float screenRight = Camera.main.transform.position.x +
+                            (Camera.main.orthographicSize * Camera.main.aspect);
+
+        float spawnX = screenRight + extraSpawnOffset;
+
         int type = Random.Range(0, 3);
 
         GameObject topPrefab = null;
@@ -61,12 +103,11 @@ public class ObstacleSpawner : MonoBehaviour
         Instantiate(topPrefab, new Vector3(spawnX, topY, 0f), Quaternion.identity);
         Instantiate(bottomPrefab, new Vector3(spawnX, bottomY, 0f), Quaternion.identity);
 
-        // calcula centro do gap
+        // centro do gap
         float bottomInnerEdge = bottomY + (bottomHeight / 2f);
         float topInnerEdge = topY - (topHeight / 2f);
         float gapCenter = (bottomInnerEdge + topInnerEdge) / 2f;
 
-        // chama o ItemSpawner
         if (itemSpawner != null)
         {
             itemSpawner.TrySpawnItem(spawnX, gapCenter);
