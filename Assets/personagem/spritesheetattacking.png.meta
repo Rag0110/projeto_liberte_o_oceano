@@ -1,25 +1,34 @@
 fileFormatVersion: 2
-guid: 506647d9a1f39dd46a4b4767666693bd
+guid: 3f6cd828df0ab444983ce62b8e5ff43a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4068302802393548140
-    second: spritesheetswinning_0
+      213: -3368047465891716031
+    second: spritesheetattacking_0
   - first:
-      213: -930263520336426960
-    second: spritesheetswinning_1
+      213: -9070569859405722416
+    second: spritesheetattacking_1
   - first:
-      213: -2945746314950206292
-    second: spritesheetswinning_2
+      213: 636790317099718695
+    second: spritesheetattacking_2
   - first:
-      213: -6189559046086425334
-    second: spritesheetswinning_3
+      213: 3627913689668902007
+    second: spritesheetattacking_3
   - first:
-      213: -5407948521666794024
-    second: spritesheetswinning_4
+      213: -982035443793484323
+    second: spritesheetattacking_4
   - first:
-      213: -2778180501193191562
-    second: spritesheetswinning_5
+      213: -3622614036346510480
+    second: spritesheetattacking_5
+  - first:
+      213: -7785135639910902032
+    second: spritesheetattacking_6
+  - first:
+      213: -1528381472395783922
+    second: spritesheetattacking_7
+  - first:
+      213: -6451282317203505556
+    second: spritesheetattacking_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheetswinning_0
+      name: spritesheetattacking_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 349
-        width: 235
-        height: 133
+        x: 96
+        y: 317
+        width: 174
+        height: 230
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49a3b90f72c7a87c0800000000000000
-      internalID: -4068302802393548140
+      spriteID: 144aed8acaa4241d0800000000000000
+      internalID: -3368047465891716031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheetswinning_1
+      name: spritesheetattacking_1
       rect:
         serializedVersion: 2
-        x: 367
-        y: 343
-        width: 222
-        height: 132
+        x: 508
+        y: 310
+        width: 233
+        height: 219
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 038c7dac14a0713f0800000000000000
-      internalID: -930263520336426960
+      spriteID: 0dcc1c355ccde1280800000000000000
+      internalID: -9070569859405722416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheetswinning_2
+      name: spritesheetattacking_2
       rect:
         serializedVersion: 2
-        x: 675
-        y: 333
-        width: 219
-        height: 136
+        x: 977
+        y: 315
+        width: 227
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cac1af2755b9e17d0800000000000000
-      internalID: -2945746314950206292
+      spriteID: 72813276b6556d800800000000000000
+      internalID: 636790317099718695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheetswinning_3
+      name: spritesheetattacking_3
       rect:
         serializedVersion: 2
-        x: 46
-        y: 102
-        width: 212
-        height: 141
+        x: 25
+        y: 21
+        width: 268
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0586bd57d44a1aa0800000000000000
-      internalID: -6189559046086425334
+      spriteID: 77cdd7c7740f85230800000000000000
+      internalID: 3627913689668902007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheetswinning_4
+      name: spritesheetattacking_4
       rect:
         serializedVersion: 2
-        x: 379
-        y: 101
-        width: 214
-        height: 129
+        x: 454
+        y: 11
+        width: 322
+        height: 211
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8dda37ad87b13f4b0800000000000000
-      internalID: -5407948521666794024
+      spriteID: dd5a8d787fb1f52f0800000000000000
+      internalID: -982035443793484323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheetswinning_5
+      name: spritesheetattacking_5
       rect:
         serializedVersion: 2
-        x: 673
-        y: 95
-        width: 252
-        height: 141
+        x: 884
+        y: 36
+        width: 9
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,8 +249,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67f8678bd8be179d0800000000000000
-      internalID: -2778180501193191562
+      spriteID: 073e8353ab3e9bdc0800000000000000
+      internalID: -3622614036346510480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetattacking_6
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 20
+        width: 398
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f690e60264a5f390800000000000000
+      internalID: -7785135639910902032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetattacking_7
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 18
+        width: 35
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e019f8806291acae0800000000000000
+      internalID: -1528381472395783922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetattacking_8
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 18
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6e7351b9e07876a0800000000000000
+      internalID: -6451282317203505556
       vertices: []
       indices: 
       edges: []
@@ -250,7 +325,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a0ef89c332c34c843bc5872e5db5588a
+    spriteID: d6ee3366d7463a0419d957db5090d588
     internalID: 0
     vertices: []
     indices: 
@@ -262,12 +337,15 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      spritesheetswinning_0: -4068302802393548140
-      spritesheetswinning_1: -930263520336426960
-      spritesheetswinning_2: -2945746314950206292
-      spritesheetswinning_3: -6189559046086425334
-      spritesheetswinning_4: -5407948521666794024
-      spritesheetswinning_5: -2778180501193191562
+      spritesheetattacking_0: -3368047465891716031
+      spritesheetattacking_1: -9070569859405722416
+      spritesheetattacking_2: 636790317099718695
+      spritesheetattacking_3: 3627913689668902007
+      spritesheetattacking_4: -982035443793484323
+      spritesheetattacking_5: -3622614036346510480
+      spritesheetattacking_6: -7785135639910902032
+      spritesheetattacking_7: -1528381472395783922
+      spritesheetattacking_8: -6451282317203505556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
