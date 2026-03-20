@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
     public float knockbackForceX = 5f;
     public float knockbackForceY = 2f;
 
+    // 🎮 GAME OVER
+    [Header("Game Over UI")]
+    public GameObject gameOverText;
+    private bool isGameOver = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,6 +52,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver)
+        {
+            if (Input.anyKeyDown)
+            {
+                Time.timeScale = 1f;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            return;
+        }
+
         // 🟢 NADO (W)
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -70,7 +85,7 @@ public class PlayerController : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
 
-        // 🔥 bloqueia só a direção errada
+        // 🔥 bloqueia direção errada
         if (transform.position.y >= maxY && rb.linearVelocity.y > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
@@ -97,22 +112,25 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
-    // ❤️ SISTEMA DE VIDA + KNOCKBACK
+    // ❤️ VIDA + KNOCKBACK
     public void TakeDamage(int damage, Vector3 obstaclePosition)
     {
-        if (isInvulnerable) return;
+        if (isInvulnerable || isGameOver) return;
 
         currentHealth -= damage;
 
         if (currentHealth < 0)
             currentHealth = 0;
 
-        // 💥 anima coração
-        hearts[currentHealth].PlayDamageEffect();
+        // 💥 anima coração (corrigido)
+        if (currentHealth > 0)
+        {
+            hearts[currentHealth - 1].PlayDamageEffect();
+        }
 
         UpdateHearts();
 
-        // 💥 aplica knockback
+        // 💥 knockback corrigido
         ApplyKnockback(obstaclePosition);
 
         // 👻 invulnerabilidade
@@ -138,10 +156,15 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Debug.Log("Morreu");
+
+        gameOverText.SetActive(true);
+        Time.timeScale = 0f;
+
+        isGameOver = true;
     }
 
     // 👻 INVULNERABILIDADE
-    IEnumerator Invulnerability()
+    System.Collections.IEnumerator Invulnerability()
     {
         isInvulnerable = true;
 
@@ -158,18 +181,14 @@ public class PlayerController : MonoBehaviour
             timer += 0.2f;
         }
 
-        sr.color = new Color(1f, 1f, 1f, 1f);
+        sr.color = Color.white;
         isInvulnerable = false;
     }
 
-    // 💥 DETECTA COLISÃO
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("COLIDIU COM: " + collision.name);
-
         if (collision.CompareTag("Obstacle"))
         {
-            Debug.Log("É OBSTÁCULO!");
             TakeDamage(1, collision.transform.position);
         }
     }
