@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(autoScoreTime);
-            AddScore(1);
+            AddScore(10);
         }
     }
 
