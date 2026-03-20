@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
     public float invulnerableTime = 1.5f;
     private SpriteRenderer sr;
 
+    // 💥 KNOCKBACK
+    [Header("Knockback")]
+    public float knockbackForceX = 5f;
+    public float knockbackForceY = 2f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -57,7 +62,7 @@ public class PlayerController : MonoBehaviour
         // 🧪 TESTE DE DANO (H)
         if (Input.GetKeyDown(KeyCode.H))
         {
-            TakeDamage(1);
+            TakeDamage(1, transform.position);
         }
 
         // 🔥 trava posição
@@ -92,22 +97,25 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
-    // ❤️ SISTEMA DE VIDA
-    public void TakeDamage(int damage)
+    // ❤️ SISTEMA DE VIDA + KNOCKBACK
+    public void TakeDamage(int damage, Vector3 obstaclePosition)
     {
-        if (isInvulnerable) return; // 👈 BLOQUEIA DANO
+        if (isInvulnerable) return;
 
         currentHealth -= damage;
 
         if (currentHealth < 0)
             currentHealth = 0;
 
-        // 💥 anima o coração perdido
+        // 💥 anima coração
         hearts[currentHealth].PlayDamageEffect();
 
         UpdateHearts();
 
-        // 👻 ativa invulnerabilidade
+        // 💥 aplica knockback
+        ApplyKnockback(obstaclePosition);
+
+        // 👻 invulnerabilidade
         StartCoroutine(Invulnerability());
 
         if (currentHealth <= 0)
@@ -132,7 +140,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Morreu");
     }
 
-    // 👻 COROUTINE DE INVULNERABILIDADE
+    // 👻 INVULNERABILIDADE
     IEnumerator Invulnerability()
     {
         isInvulnerable = true;
@@ -141,21 +149,20 @@ public class PlayerController : MonoBehaviour
 
         while (timer < invulnerableTime)
         {
-            // transparente
             sr.color = new Color(1f, 1f, 1f, 0.3f);
             yield return new WaitForSeconds(0.1f);
 
-            // normal
             sr.color = new Color(1f, 1f, 1f, 1f);
             yield return new WaitForSeconds(0.1f);
 
             timer += 0.2f;
         }
 
-        // garante reset
         sr.color = new Color(1f, 1f, 1f, 1f);
         isInvulnerable = false;
     }
+
+    // 💥 DETECTA COLISÃO
     void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("COLIDIU COM: " + collision.name);
@@ -163,7 +170,15 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Obstacle"))
         {
             Debug.Log("É OBSTÁCULO!");
-            TakeDamage(1);
+            TakeDamage(1, collision.transform.position);
         }
+    }
+
+    // 💥 KNOCKBACK CORRIGIDO
+    void ApplyKnockback(Vector3 obstaclePosition)
+    {
+        float directionY = transform.position.y > obstaclePosition.y ? 1f : -1f;
+
+        rb.linearVelocity = new Vector2(-knockbackForceX, directionY * knockbackForceY);
     }
 }
