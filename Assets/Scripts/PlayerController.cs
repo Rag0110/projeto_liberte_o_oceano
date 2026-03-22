@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Collider2D col;
-  
+
     [Header("Limits")]
     public float minY = -7f;
     public float maxY = 2f;
@@ -35,15 +35,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Game Over UI")]
     public GameObject gameOverText;
+
     private bool isGameOver = false;
-
-    [Header("Attack")]
-    public GameObject attackHitbox;
-
-    public bool IsAttacking()
-    {
-        return isAttacking;
-    }
 
     void Start()
     {
@@ -113,16 +106,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = true;
         anim.SetTrigger("attack");
 
-        // ativa hitbox
-        attackHitbox.SetActive(true);
-
-        Invoke(nameof(DisableHitbox), 0.2f);
-        Invoke(nameof(ResetAttack), 0.6f);
-    }
-
-    void DisableHitbox()
-    {
-        attackHitbox.SetActive(false);
+        Invoke(nameof(ResetAttack), 0.5f);
     }
 
     void ResetAttack()
@@ -215,20 +199,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Breakable"))
-        {
-            BreakableObstacle breakable = collision.GetComponent<BreakableObstacle>();
-
-            if (breakable != null && !breakable.IsBroken())
-            {
-                // Player toma dano
-                TakeDamage(1, collision.transform.position);
-
-                // Obstáculo quebra
-                breakable.Break();
-            }
-        }
-        else if (collision.CompareTag("Obstacle"))
+        if (collision.CompareTag("Obstacle"))
         {
             TakeDamage(1, collision.transform.position);
         }

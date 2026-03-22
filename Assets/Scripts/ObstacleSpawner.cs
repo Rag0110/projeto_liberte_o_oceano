@@ -15,15 +15,12 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("Item Spawner")]
     public ItemSpawner itemSpawner;
 
-    [Header("Breakable")]
-    public GameObject breakablePrefab; // 🔥 NOVO
-
     [Header("Spawn Settings")]
     public float minY = -10.5f;
     public float maxY = 3f;
 
     [Header("Spawn Offset")]
-    public float extraSpawnOffset = 2f;
+    public float extraSpawnOffset = 2f; // distância fora da tela
 
     [Header("Group Settings")]
     public int minGroup = 1;
@@ -68,6 +65,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnObstacle()
     {
+        // 🔥 calcula a borda direita da câmera
         float screenRight = Camera.main.transform.position.x +
                             (Camera.main.orthographicSize * Camera.main.aspect);
 
@@ -105,30 +103,14 @@ public class ObstacleSpawner : MonoBehaviour
         Instantiate(topPrefab, new Vector3(spawnX, topY, 0f), Quaternion.identity);
         Instantiate(bottomPrefab, new Vector3(spawnX, bottomY, 0f), Quaternion.identity);
 
-        // 🎯 CENTRO DO GAP
+        // centro do gap
         float bottomInnerEdge = bottomY + (bottomHeight / 2f);
         float topInnerEdge = topY - (topHeight / 2f);
         float gapCenter = (bottomInnerEdge + topInnerEdge) / 2f;
 
-        // 🎲 DECISÃO DO QUE SPAWNAR
-        int random = Random.Range(0, 100);
-
-        if (random < 50)
+        if (itemSpawner != null)
         {
-            // 🟣 ITEM
-            if (itemSpawner != null)
-            {
-                itemSpawner.TrySpawnItem(spawnX, gapCenter);
-            }
+            itemSpawner.TrySpawnItem(spawnX, gapCenter);
         }
-        else if (random < 80)
-        {
-            // 🧱 BREAKABLE
-            if (breakablePrefab != null)
-            {
-                Instantiate(breakablePrefab, new Vector3(spawnX, gapCenter, 0f), Quaternion.identity);
-            }
-        }
-        // else → nada
     }
 }
