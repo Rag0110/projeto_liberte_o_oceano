@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -7,15 +8,14 @@ public class PlayerController : MonoBehaviour
     public float swimForce = 1.5f;
     private Rigidbody2D rb;
     private Animator anim;
+    private Collider2D col;
 
     [Header("Limits")]
     public float minY = -7f;
     public float maxY = 2f;
 
-    // ATAQUE
     private bool isAttacking = false;
 
-    // ❤️ VIDA
     [Header("Health")]
     public int maxHealth = 4;
     private int currentHealth;
@@ -25,19 +25,17 @@ public class PlayerController : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    // 👻 INVULNERABILIDADE
     private bool isInvulnerable = false;
     public float invulnerableTime = 1.5f;
     private SpriteRenderer sr;
 
-    // 💥 KNOCKBACK
     [Header("Knockback")]
     public float knockbackForceX = 5f;
     public float knockbackForceY = 2f;
 
-    // 🎮 GAME OVER
     [Header("Game Over UI")]
     public GameObject gameOverText;
+
     private bool isGameOver = false;
 
     void Start()
@@ -45,47 +43,51 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
 
         currentHealth = maxHealth;
         UpdateHearts();
+
+        // garante que começa escondido
+        if (gameOverText != null)
+        {
+            Debug.Log("Desativando o objeto: " + gameOverText.name);
+            gameOverText.SetActive(false);
+        }
     }
 
     void Update()
     {
+        // 👉 SE MORREU, só espera tecla
         if (isGameOver)
         {
             if (Input.anyKeyDown)
             {
-                Time.timeScale = 1f;
+                Time.timeScale = 1f; // 🔥 volta o tempo ao normal
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-            return;
+            return; // 🚨 trava o resto do código
         }
 
-        // 🟢 NADO (W)
         if (Input.GetKeyDown(KeyCode.W))
         {
             rb.linearVelocity = Vector2.up * swimForce;
         }
 
-        // 🔴 ATAQUE (CTRL)
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
             Attack();
         }
 
-        // 🧪 TESTE DE DANO (H)
         if (Input.GetKeyDown(KeyCode.H))
         {
             TakeDamage(1, transform.position);
         }
 
-        // 🔥 trava posição
         Vector3 pos = transform.position;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
 
-        // 🔥 bloqueia direção errada
         if (transform.position.y >= maxY && rb.linearVelocity.y > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
@@ -112,7 +114,6 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
-    // ❤️ VIDA + KNOCKBACK
     public void TakeDamage(int damage, Vector3 obstaclePosition)
     {
         if (isInvulnerable || isGameOver) return;
@@ -122,7 +123,6 @@ public class PlayerController : MonoBehaviour
         if (currentHealth < 0)
             currentHealth = 0;
 
-        // 💥 anima coração (corrigido)
         if (currentHealth > 0)
         {
             hearts[currentHealth - 1].PlayDamageEffect();
@@ -130,10 +130,8 @@ public class PlayerController : MonoBehaviour
 
         UpdateHearts();
 
-        // 💥 knockback corrigido
         ApplyKnockback(obstaclePosition);
 
-        // 👻 invulnerabilidade
         StartCoroutine(Invulnerability());
 
         if (currentHealth <= 0)
@@ -157,14 +155,28 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Morreu");
 
-        gameOverText.SetActive(true);
+        isGameOver = true;
+
+        // 🧊 para o tempo do jogo
         Time.timeScale = 0f;
 
-        isGameOver = true;
+        // 👻 esconde o player
+        sr.enabled = false;
+
+        // ⛔ desativa colisão
+        if (col != null)
+            col.enabled = false;
+
+        // ⛔ para movimento
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        // mostra o texto
+        if (gameOverText != null)
+            gameOverText.SetActive(true);
     }
 
-    // 👻 INVULNERABILIDADE
-    System.Collections.IEnumerator Invulnerability()
+    IEnumerator Invulnerability()
     {
         isInvulnerable = true;
 
@@ -181,7 +193,7 @@ public class PlayerController : MonoBehaviour
             timer += 0.2f;
         }
 
-        sr.color = Color.white;
+        sr.color = new Color(1f, 1f, 1f, 1f);
         isInvulnerable = false;
     }
 
@@ -193,7 +205,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 💥 KNOCKBACK CORRIGIDO
     void ApplyKnockback(Vector3 obstaclePosition)
     {
         float directionY = transform.position.y > obstaclePosition.y ? 1f : -1f;
