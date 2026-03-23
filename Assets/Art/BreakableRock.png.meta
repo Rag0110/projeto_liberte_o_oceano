@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f1186820871cdc84b87ef41859da08b3
+guid: 5446dfdcb63e5214d8126399d96747b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3360795912230786166
-    second: NoHeart_0
+      213: -6861610273556448275
+    second: BreakableRock_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NoHeart_0
+      name: BreakableRock_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 16
-        width: 34
-        height: 31
+        x: 0
+        y: 4
+        width: 99
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8b26e09ced0c51d0800000000000000
-      internalID: -3360795912230786166
+      spriteID: deb3f718fc9a6c0a0800000000000000
+      internalID: -6861610273556448275
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NoHeart_0: -3360795912230786166
+      BreakableRock_0: -6861610273556448275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

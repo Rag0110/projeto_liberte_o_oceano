@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverText;
 
     private bool isGameOver = false;
+    public GameObject attackHitbox;
 
     void Start()
     {
@@ -44,29 +45,27 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        rb.freezeRotation = true;
 
         currentHealth = maxHealth;
         UpdateHearts();
 
-        // garante que começa escondido
         if (gameOverText != null)
         {
-            Debug.Log("Desativando o objeto: " + gameOverText.name);
             gameOverText.SetActive(false);
         }
     }
 
     void Update()
     {
-        // 👉 SE MORREU, só espera tecla
         if (isGameOver)
         {
             if (Input.anyKeyDown)
             {
-                Time.timeScale = 1f; // 🔥 volta o tempo ao normal
+                Time.timeScale = 1f;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-            return; // 🚨 trava o resto do código
+            return;
         }
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -106,12 +105,23 @@ public class PlayerController : MonoBehaviour
         isAttacking = true;
         anim.SetTrigger("attack");
 
+        if (attackHitbox != null)
+            attackHitbox.SetActive(true);
+
         Invoke(nameof(ResetAttack), 0.5f);
     }
 
     void ResetAttack()
     {
         isAttacking = false;
+
+        if (attackHitbox != null)
+            attackHitbox.SetActive(false);
+    }
+
+    public bool IsAttacking()
+    {
+        return isAttacking;
     }
 
     public void TakeDamage(int damage, Vector3 obstaclePosition)
@@ -157,21 +167,16 @@ public class PlayerController : MonoBehaviour
 
         isGameOver = true;
 
-        // 🧊 para o tempo do jogo
         Time.timeScale = 0f;
 
-        // 👻 esconde o player
         sr.enabled = false;
 
-        // ⛔ desativa colisão
         if (col != null)
             col.enabled = false;
 
-        // ⛔ para movimento
         rb.linearVelocity = Vector2.zero;
         rb.simulated = false;
 
-        // mostra o texto
         if (gameOverText != null)
             gameOverText.SetActive(true);
     }
@@ -197,10 +202,14 @@ public class PlayerController : MonoBehaviour
         isInvulnerable = false;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    // 🔥 NOVO SISTEMA DE COLISÃO (IMPORTANTE)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
+            // 👉 se estiver atacando, não toma dano
+            if (isAttacking) return;
+
             TakeDamage(1, collision.transform.position);
         }
     }
@@ -209,6 +218,7 @@ public class PlayerController : MonoBehaviour
     {
         float directionY = transform.position.y > obstaclePosition.y ? 1f : -1f;
 
-        rb.linearVelocity = new Vector2(-knockbackForceX, directionY * knockbackForceY);
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(new Vector2(-knockbackForceX, directionY * knockbackForceY), ForceMode2D.Impulse);
     }
 }
