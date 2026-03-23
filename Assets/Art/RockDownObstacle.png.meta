@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5446dfdcb63e5214d8126399d96747b6
+guid: 41932b8b713447e40be238e0fafbdc89
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6861610273556448275
-    second: BreakableRock_0
+      213: 5385601159930677165
+    second: RockDownObstacle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BreakableRock_0
+      name: RockDownObstacle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4
-        width: 99
-        height: 95
+        x: 24
+        y: 0
+        width: 166
+        height: 174
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: deb3f718fc9a6c0a0800000000000000
-      internalID: -6861610273556448275
+      spriteID: da7899788bf7dba40800000000000000
+      internalID: 5385601159930677165
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BreakableRock_0: -6861610273556448275
+      RockDownObstacle_0: 5385601159930677165
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,0 +1,463 @@
+fileFormatVersion: 2
+guid: cf36b40f78080894a9fffcec72e31c05
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5518331404724904252
+    second: AlgaBreakable_0
+  - first:
+      213: -2354311409704881871
+    second: AlgaBreakable_1
+  - first:
+      213: -1567213156119357621
+    second: AlgaBreakable_2
+  - first:
+      213: -8102229401630844377
+    second: AlgaBreakable_3
+  - first:
+      213: -4288825572669004047
+    second: AlgaBreakable_4
+  - first:
+      213: 3953009516534962140
+    second: AlgaBreakable_5
+  - first:
+      213: 835149001358273224
+    second: AlgaBreakable_6
+  - first:
+      213: 950395145460448719
+    second: AlgaBreakable_7
+  - first:
+      213: 4123351715645682760
+    second: AlgaBreakable_8
+  - first:
+      213: 5810507022905710688
+    second: AlgaBreakable_9
+  - first:
+      213: 7842700174721147697
+    second: AlgaBreakable_10
+  - first:
+      213: 6097034076409127035
+    second: AlgaBreakable_11
+  - first:
+      213: 8614383424165265984
+    second: AlgaBreakable_12
+  - first:
+      213: -4187792760989160253
+    second: AlgaBreakable_13
+  - first:
+      213: -3023968465888415810
+    second: AlgaBreakable_14
+  - first:
+      213: 2037129137586638075
+    second: AlgaBreakable_15
+  - first:
+      213: 8753966227583819712
+    second: AlgaBreakable_16
+  - first:
+      213: -6137243899848562653
+    second: AlgaBreakable_17
+  - first:
+      213: -7130387041331061951
+    second: AlgaBreakable_18
+  - first:
+      213: 2833609010378468190
+    second: AlgaBreakable_19
+  - first:
+      213: -6064984383828741279
+    second: AlgaBreakable_20
+  - first:
+      213: -7731212454081569634
+    second: AlgaBreakable_21
+  - first:
+      213: -5019027862764675372
+    second: AlgaBreakable_22
+  - first:
+      213: 7162524497753092056
+    second: AlgaBreakable_23
+  - first:
+      213: 6186845369154647161
+    second: AlgaBreakable_24
+  - first:
+      213: -7020269492748974076
+    second: AlgaBreakable_25
+  - first:
+      213: 5178210424753637746
+    second: AlgaBreakable_26
+  - first:
+      213: -8712039324192773648
+    second: AlgaBreakable_27
+  - first:
+      213: -2667950063549765298
+    second: AlgaBreakable_28
+  - first:
+      213: 9216113869202683156
+    second: AlgaBreakable_29
+  - first:
+      213: -7271867607661339176
+    second: AlgaBreakable_30
+  - first:
+      213: -3328610858041856790
+    second: AlgaBreakable_31
+  - first:
+      213: 4331609405110444990
+    second: AlgaBreakable_32
+  - first:
+      213: 333041234378663065
+    second: AlgaBreakable_33
+  - first:
+      213: -3515993545428226096
+    second: AlgaBreakable_34
+  - first:
+      213: -5608468752380616524
+    second: AlgaBreakable_35
+  - first:
+      213: -4367965610487805644
+    second: AlgaBreakable_36
+  - first:
+      213: -8889218575631572501
+    second: AlgaBreakable_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AlgaBreakable_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 148
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31a28bdc2d059c40800000000000000
+      internalID: 5518331404724904252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 148
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13134ed1f3ec35fd0800000000000000
+      internalID: -2354311409704881871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 148
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b47df2e10f3204ae0800000000000000
+      internalID: -1567213156119357621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_3
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 148
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72a511369491f8f80800000000000000
+      internalID: -8102229401630844377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_4
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 148
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f6e3756dd70b74c0800000000000000
+      internalID: -4288825572669004047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd71eca1639ebd630800000000000000
+      internalID: 3953009516534962140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_6
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 48
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ca6b78879b079b00800000000000000
+      internalID: 835149001358273224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_7
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 48
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcdfc61795b703d00800000000000000
+      internalID: 950395145460448719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_8
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 48
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 844fe07f986193930800000000000000
+      internalID: 4123351715645682760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaBreakable_9
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 48
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06815391a5113a050800000000000000
+      internalID: 5810507022905710688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 38901177c591bfc4c90f3808669449db
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":100.0,"y":100.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      AlgaBreakable_0: 5518331404724904252
+      AlgaBreakable_1: -2354311409704881871
+      AlgaBreakable_2: -1567213156119357621
+      AlgaBreakable_3: -8102229401630844377
+      AlgaBreakable_4: -4288825572669004047
+      AlgaBreakable_5: 3953009516534962140
+      AlgaBreakable_6: 835149001358273224
+      AlgaBreakable_7: 950395145460448719
+      AlgaBreakable_8: 4123351715645682760
+      AlgaBreakable_9: 5810507022905710688
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
