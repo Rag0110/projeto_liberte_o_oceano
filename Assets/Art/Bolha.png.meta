@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: f1186820871cdc84b87ef41859da08b3
+guid: 6dabcd94dec5fbc4dbe2e17297b72015
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3360795912230786166
-    second: NoHeart_0
+      213: -1457559781235916634
+    second: Bolha_0
+  - first:
+      213: -6325001362624793029
+    second: Bolha_1
+  - first:
+      213: -4491664248679491068
+    second: Bolha_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +106,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NoHeart_0
+      name: Bolha_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 16
-        width: 34
-        height: 31
+        x: 0
+        y: 0
+        width: 200
+        height: 157
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8b26e09ced0c51d0800000000000000
-      internalID: -3360795912230786166
+      spriteID: 6a08988f915b5cbe0800000000000000
+      internalID: -1457559781235916634
       vertices: []
       indices: 
       edges: []
@@ -125,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 514314119d1dbe14c991df66af27053f
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +139,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":157.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      NoHeart_0: -3360795912230786166
+      Bolha_0: -1457559781235916634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
