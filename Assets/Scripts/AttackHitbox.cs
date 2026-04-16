@@ -9,11 +9,17 @@ public class AttackHitbox : MonoBehaviour
         Debug.Log("Acertou algo: " + collision.name);
 
         BreakableObstacle obstacle = collision.GetComponent<BreakableObstacle>();
-
         if (obstacle != null)
         {
             Debug.Log("ACERTOU OBSTÁCULO!");
-            obstacle.TakeDamage(1);
+            obstacle.TakeDamage(damage);
+        }
+
+        FishNet fishNet = collision.GetComponent<FishNet>();
+        if (fishNet != null)
+        {
+            Debug.Log("ACERTOU REDE!");
+            fishNet.TakeDamage(damage);
         }
     }
 }

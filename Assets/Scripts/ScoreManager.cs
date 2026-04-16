@@ -12,7 +12,9 @@ public class ScoreManager : MonoBehaviour
 
     Vector3 originalScale;
 
-    public float autoScoreTime = 1f; // tempo para ganhar 1 ponto
+    public float autoScoreTime = 1f;
+
+    private Coroutine autoScoreCoroutine;
 
     void Awake()
     {
@@ -23,8 +25,7 @@ public class ScoreManager : MonoBehaviour
     {
         originalScale = scoreText.transform.localScale;
         UpdateScore();
-
-        StartCoroutine(AutoScore());
+        StartAutoScore();
     }
 
     public void AddScore(int value)
@@ -32,11 +33,31 @@ public class ScoreManager : MonoBehaviour
         score += value;
         UpdateScore();
         StartCoroutine(PopEffect());
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.CheckModeSwitch(score);
     }
 
     void UpdateScore()
     {
         scoreText.text = "Score: " + score;
+    }
+
+    public void StartAutoScore()
+    {
+        if (autoScoreCoroutine != null)
+            StopCoroutine(autoScoreCoroutine);
+
+        autoScoreCoroutine = StartCoroutine(AutoScore());
+    }
+
+    public void StopAutoScore()
+    {
+        if (autoScoreCoroutine != null)
+        {
+            StopCoroutine(autoScoreCoroutine);
+            autoScoreCoroutine = null;
+        }
     }
 
     IEnumerator AutoScore()
@@ -51,9 +72,7 @@ public class ScoreManager : MonoBehaviour
     IEnumerator PopEffect()
     {
         scoreText.transform.localScale = originalScale * 1.1f;
-
         yield return new WaitForSeconds(0.1f);
-
         scoreText.transform.localScale = originalScale;
     }
 }

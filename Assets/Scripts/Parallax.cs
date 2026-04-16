@@ -1,31 +1,48 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ParallaxLoop : MonoBehaviour
+public class Parallax : MonoBehaviour
 {
-    public float speed = 4f;
+    public float speed = 1f;
+    public Parallax partner; // a outra cópia da mesma camada
 
-    private float length;
-    private Vector3 startPos;
-    private Tilemap tilemap;
+    private float tileLength;
+    private bool isMoving = true;
 
     void Start()
     {
-        startPos = transform.position;
+        Tilemap tilemap = GetComponent<Tilemap>();
+        if (tilemap == null)
+            tilemap = GetComponentInChildren<Tilemap>();
 
-        tilemap = GetComponentInChildren<Tilemap>();
         tilemap.CompressBounds();
-
-        length = tilemap.localBounds.size.x;
+        tileLength = tilemap.localBounds.size.x;
     }
 
     void Update()
     {
+        if (!isMoving) return;
+
         transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-        if (transform.position.x <= startPos.x - length)
+        float camLeft = Camera.main.transform.position.x - (Camera.main.orthographicSize * Camera.main.aspect);
+        float rightEdge = transform.position.x + tileLength;
+
+        if (rightEdge < camLeft)
         {
-            transform.position += new Vector3(length * 2, 0, 0);
+            // Cola atrás do parceiro
+            float partnerRight = partner.transform.position.x + tileLength;
+            transform.position = new Vector3(partnerRight, transform.position.y, transform.position.z);
         }
+    }
+
+    public void Stop()
+    {
+        isMoving = false;
+    }
+
+    public void Resume()
+    {
+        isMoving = true;
     }
 }

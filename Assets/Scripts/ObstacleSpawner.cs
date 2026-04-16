@@ -32,19 +32,47 @@ public class ObstacleSpawner : MonoBehaviour
     public float smallGap = 1.2f;
     public float bigGap = 3.5f;
 
+    [Header("Speed Reference")]
+    public Parallax baseParallax;
+
     private int obstaclesToSpawn;
     private int spawnedInGroup = 0;
+    private bool isStopped = false;
 
     void Start()
     {
         if (!Application.isPlaying) return;
-
         Invoke(nameof(SpawnRoutine), 1f);
+    }
+
+    public void StopSpawning()
+    {
+        isStopped = true;
+        CancelInvoke();
+    }
+
+    public void ResumeSpawning()
+    {
+        isStopped = false;
+        spawnedInGroup = 0;
+        Invoke(nameof(SpawnRoutine), bigGap);
+    }
+
+    float GetBaseSpeed()
+    {
+        return (baseParallax != null) ? baseParallax.speed : 1f;
+    }
+
+    void SetSpeed(GameObject obj)
+    {
+        ObstacleMover mover = obj.GetComponent<ObstacleMover>();
+        if (mover != null)
+            mover.speed = GetBaseSpeed();
     }
 
     void SpawnRoutine()
     {
-        if (!Application.isPlaying) return;
+        if (!Application.isPlaying || isStopped) return;
 
         if (spawnedInGroup == 0)
         {
@@ -70,7 +98,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnObstacle()
     {
-        if (!Application.isPlaying) return;
+        if (!Application.isPlaying || isStopped) return;
 
         if (Camera.main == null)
         {
@@ -78,7 +106,6 @@ public class ObstacleSpawner : MonoBehaviour
             return;
         }
 
-        // Escolhe tipo de obstáculo
         int type = Random.Range(0, 3);
         GameObject topPrefab = null;
         GameObject bottomPrefab = null;
@@ -96,46 +123,39 @@ public class ObstacleSpawner : MonoBehaviour
             return;
         }
 
-        // Calcula posição X fora da tela
         float screenRight = Camera.main.transform.position.x + (Camera.main.orthographicSize * Camera.main.aspect);
         float spawnX = screenRight + extraSpawnOffset;
 
-        // Alturas
         float topHeight = topPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
         float bottomHeight = bottomPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
 
-        // Posições Y
         float topY = maxY - (topHeight / 2f);
         float bottomY = minY + (bottomHeight / 2f);
 
-        // Instancia obstáculos
-        Instantiate(topPrefab, new Vector3(spawnX, topY, 0f), Quaternion.identity);
-        Instantiate(bottomPrefab, new Vector3(spawnX, bottomY, 0f), Quaternion.identity);
+        GameObject topObj = Instantiate(topPrefab, new Vector3(spawnX, topY, 0f), Quaternion.identity);
+        GameObject bottomObj = Instantiate(bottomPrefab, new Vector3(spawnX, bottomY, 0f), Quaternion.identity);
 
-        // Centro do gap
+        SetSpeed(topObj);
+        SetSpeed(bottomObj);
+
         float bottomInnerEdge = bottomY + (bottomHeight / 2f);
         float topInnerEdge = topY - (topHeight / 2f);
         float gapCenter = (bottomInnerEdge + topInnerEdge) / 2f;
 
-        // 🔥 SISTEMA CORRIGIDO (NUNCA SOBREPOR)
         int spawnRoll = Random.Range(0, 100);
 
         if (spawnRoll < 50)
         {
-            // ITEM
             if (itemSpawner != null)
-            {
                 itemSpawner.TrySpawnItem(spawnX, gapCenter);
-            }
         }
         else if (spawnRoll < 80)
         {
-            // BREAKABLE
             if (breakablePrefab != null)
             {
-                Instantiate(breakablePrefab, new Vector3(spawnX, gapCenter, 0f), Quaternion.identity);
+                GameObject breakObj = Instantiate(breakablePrefab, new Vector3(spawnX, gapCenter, 0f), Quaternion.identity);
+                SetSpeed(breakObj);
             }
         }
-        // else: não spawna nada
     }
 }
