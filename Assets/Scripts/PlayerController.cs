@@ -40,11 +40,21 @@ public class PlayerController : MonoBehaviour
     [Header("Game Over UI")]
     public GameObject gameOverText;
 
+    [Header("Pause UI")]
+    public GameObject pausePanel;
+    private bool isPaused = false;
+
     private bool isGameOver = false;
     public GameObject attackHitbox;
 
     private Vector3 startPosition;
     private bool isReturning = false;
+
+    [Header("Sound Effects")]
+    public AudioClip hitSound;
+
+    [Header("Music")]
+    public AudioSource musicSource;
 
     void Start()
     {
@@ -61,17 +71,57 @@ public class PlayerController : MonoBehaviour
 
         if (gameOverText != null)
             gameOverText.SetActive(false);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
     }
 
     void Update()
     {
-        if (isGameOver)
+        // Pausa
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
         {
-            if (Input.anyKeyDown)
+            if (isPaused)
             {
+                if (musicSource != null)
+                    musicSource.UnPause();
                 Time.timeScale = 1f;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(0);
+                return;
             }
+            else
+            {
+                isPaused = true;
+                Time.timeScale = 0f;
+                if (pausePanel != null)
+                    pausePanel.SetActive(true);
+                if (musicSource != null)
+                    musicSource.Pause();
+                return;
+            }
+        }
+
+        if (isPaused && Input.GetKeyDown(KeyCode.Return))
+        {
+            isPaused = false;
+            Time.timeScale = 1f;
+            if (pausePanel != null)
+                pausePanel.SetActive(false);
+            if (musicSource != null)
+                musicSource.UnPause();
+            return;
+        }
+
+        if (isPaused) return;
+
+        if (isPaused && Input.GetKeyDown(KeyCode.Return))
+        {
+            isPaused = false;
+            Time.timeScale = 1f;
+            if (pausePanel != null)
+                pausePanel.SetActive(false);
+            if (musicSource != null)
+                musicSource.UnPause();
             return;
         }
 
@@ -124,11 +174,7 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            TakeDamage(1, transform.position);
-        }
-
+        
         {
             Vector3 pos = transform.position;
             pos.y = Mathf.Clamp(pos.y, minY, maxY);
@@ -210,6 +256,9 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage, Vector3 obstaclePosition)
     {
         if (isInvulnerable || isGameOver) return;
+
+        if (hitSound != null)
+            AudioSource.PlayClipAtPoint(hitSound, transform.position);
 
         currentHealth -= damage;
 
