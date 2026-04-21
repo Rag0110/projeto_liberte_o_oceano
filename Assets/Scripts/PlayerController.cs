@@ -78,8 +78,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Pausa
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
+        if (isGameOver)
+        {
+            if (Input.anyKeyDown)
+            {
+                Time.timeScale = 1f;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
             {
@@ -113,17 +122,6 @@ public class PlayerController : MonoBehaviour
         }
 
         if (isPaused) return;
-
-        if (isPaused && Input.GetKeyDown(KeyCode.Return))
-        {
-            isPaused = false;
-            Time.timeScale = 1f;
-            if (pausePanel != null)
-                pausePanel.SetActive(false);
-            if (musicSource != null)
-                musicSource.UnPause();
-            return;
-        }
 
         if (isReturning) return;
 
@@ -174,7 +172,6 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
 
-        
         {
             Vector3 pos = transform.position;
             pos.y = Mathf.Clamp(pos.y, minY, maxY);
@@ -289,8 +286,6 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Morreu");
-
         isGameOver = true;
         Time.timeScale = 0f;
         sr.enabled = false;
